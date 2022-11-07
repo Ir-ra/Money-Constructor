@@ -1,13 +1,16 @@
 import styles from './Login.module.css'
 
 import { useState } from 'react';
+import { useLogIn } from '../../hooks/useLogIn'
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { logIn, error, isPending } = useLogIn()
 
     const handleSubmit = (e) => {
-        e.preventDefault() 
+        e.preventDefault()
+        logIn(email, password)
     }
 
     return (
@@ -18,7 +21,7 @@ function Login() {
                 <span>email:</span>
                 <input
                     type='email'
-                    onChange={(e)=> setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     value={email}
                 />
             </label>
@@ -27,12 +30,15 @@ function Login() {
                 <span>password:</span>
                 <input
                     type='password'
-                    onChange={(e)=> setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     value={password}
                 />
             </label>
 
-            <button className='btn'>Login</button>
+            {/* <button className='btn'>Login</button> */}
+            {error && <p>{error}</p>}
+            {!isPending && <button className='btn'>Login</button>}
+            {isPending && <button className='btn' disabled>...</button>}
         </form>
     );
 }
