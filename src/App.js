@@ -1,31 +1,39 @@
 // import './App.css'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import Navbar from './components/Navbar';
+import { useAuth } from './hooks/useAuth';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 
 function App() {
+  const { authIsReady, user } = useAuth()  //використ це, бо воно вертає сам Контекст, де прописано все
+ 
   return (
     <div className="App">
-      <BrowserRouter>
-      <Navbar/>
-        <Switch>
+      {authIsReady && (
+        <BrowserRouter>
+        <Navbar/>
+          <Switch>
 
-        <Route exact path='/'>
-          <Home/>
-        </Route>
+          <Route exact path='/'>
+            {!user && <Redirect to='/login'/>}
+            {user && <Home/>}
+          </Route>
 
-        <Route  path='/login'>
-          <Login/>
-        </Route>
+          <Route  path='/login'>
+            {user && <Redirect to='/'/>}
+            {!user && <Login/>}
+          </Route>
 
-        <Route  path='/signUp'>
-          <SignUp/>
-        </Route>
+          <Route  path='/signUp'>
+            {user && <Redirect to='/'/>}
+            {!user && <SignUp/>}
+          </Route>
 
-        </Switch>
-      </BrowserRouter>
+          </Switch>
+        </BrowserRouter>
+      )}
     </div>
   );
 }
