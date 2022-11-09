@@ -1,10 +1,12 @@
 //Цей Хук лише для використання Real Time Data, 
 //тобто щоб данні одразу відображались на сторінці
+//апдейтить documents коли є зміни і тепер documents будуть співпадати в реальному цасі 
+//щоб не було в коллекції 
 
 import { projectFirestore } from "../firebase/config";
 import { useEffect, useState } from "react";
 
-const useCollection = (collectioN) => {
+export const useCollection = (collectioN) => {
     
     const [error, setError] = useState(null)
     const [documents, setDocuments] = useState(null)
@@ -39,4 +41,3 @@ const useCollection = (collectioN) => {
     return {documents, error}
 }
 
-export default useCollection;

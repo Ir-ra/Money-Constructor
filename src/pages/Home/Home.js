@@ -1,14 +1,20 @@
 import styles from './Home.module.css'
 import TransactionForm from './TransactionForm';
+import TransactionList from './TransactionList'
 import {useAuth} from '../../hooks/useAuth'
+import {useCollection} from '../../hooks/useCollection';
+
 
 function Home() {
+    const {documents, error} = useCollection('transactions')
     const {user} = useAuth()
+
     return ( 
         <div className={styles.container}>
            
             <div className={styles.content}>
-                transaction div
+            {error && <p>{error}</p>}
+            {documents && <TransactionList transactions={documents} />}
             </div>
 
             <div className={styles.sidebar}>
