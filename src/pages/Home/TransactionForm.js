@@ -1,14 +1,27 @@
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
+import { useFirestore } from "../../hooks/useFirestore"
 
-export default function TransactionForm(){
+export default function TransactionForm({uid}){
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
+    const {addDocument, response} = useFirestore('transactions')
 
     const handleSubmit = (e) => {
         e.preventDefault()
         //save transaction to FB(db)
-        console.log({name, amount})
+        addDocument({
+            uid: uid,
+            name, 
+            amount
+        })
     }
+//Очищує поля після додавання значень в базу данних. Але тільки якщо це успішна операція
+    useEffect(() => {
+        if (response.success) {
+            setName('')
+            setAmount('')
+        }
+    }, [response.success])
 
     return (
         <Fragment>

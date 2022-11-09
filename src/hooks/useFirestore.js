@@ -1,5 +1,6 @@
+//Цей ХУК лише для додавання, видалення, можна і для  апдейту
 import { useEffect, useState, useReducer } from "react"
-import {projectFirestore} from '../firebase/config' //для взаємодіїї з датабазою проекту
+import {projectFirestore, timestamp} from '../firebase/config' //для взаємодіїї з датабазою проекту
 
 let initialState = {
     document: null,
@@ -42,9 +43,11 @@ export const useFirestore = (collectioN) => {  //coll-n це то що ство�
         dispatch({type: 'IS_PENDING'})
 
         try {
-            const addedDovument = await ref.add(doc)  //({name, amount}) типу це і є doc
-            dispatchIfNotCancelled({type: 'ADDED_DOC', payload: addedDovument})
-        } catch (error) {
+            const createdAt = timestamp.fromDate(new Date())
+            const addedDocument = await ref.add({...doc, createdAt})  //({name, amount}) типу це і є doc
+            dispatchIfNotCancelled({type: 'ADDED_DOC', payload: addedDocument})
+        } 
+        catch (error) {
             dispatchIfNotCancelled({type: 'ERROR', payload: error.message})
         }
     }    

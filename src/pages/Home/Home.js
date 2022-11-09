@@ -1,7 +1,9 @@
 import styles from './Home.module.css'
 import TransactionForm from './TransactionForm';
+import {useAuth} from '../../hooks/useAuth'
 
 function Home() {
+    const {user} = useAuth()
     return ( 
         <div className={styles.container}>
            
@@ -10,7 +12,7 @@ function Home() {
             </div>
 
             <div className={styles.sidebar}>
-                <TransactionForm/>
+                <TransactionForm uid={user.uid}/>
             </div>
 
         </div>
