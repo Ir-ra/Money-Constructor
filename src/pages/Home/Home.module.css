@@ -1,19 +1,21 @@
 .container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
     max-width: 960px;
-    margin: 60px auto;
+    margin: 10px auto;
   }
   .content {
     padding-right: 30px;
   }
   .sidebar {
-    padding: 30px;
+    padding-left: 0px;
+    
   }
   .sidebar form {
     padding: 20px;
     background: #1f9751;
     border-radius: 10px;
+    max-width: 260px;
   }
   .sidebar input, .sidebar select {
     display: block;
@@ -45,6 +47,7 @@
   .sidebar h3 {
     color: #1f9751;
     margin-bottom: 20px;
+    /* text-align: center; */
   }
   .sidebar aside {
     margin-top: 40px;
