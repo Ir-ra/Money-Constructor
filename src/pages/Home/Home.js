@@ -6,8 +6,12 @@ import {useCollection} from '../../hooks/useCollection';
 
 
 function Home() {
-    const {documents, error} = useCollection('transactions')
     const {user} = useAuth()
+    const {documents, error} = useCollection(
+        'transactions',
+        ["uid", "==", user.uid])       //це типу оті query з useColl
+        
+    
 
     return ( 
         <div className={styles.container}>
