@@ -6,7 +6,7 @@
 import { projectFirestore } from "../firebase/config";
 import { useEffect, useRef, useState } from "react";
 
-export const useCollection = (collectioN, _query) => {
+export const useCollection = (collectioN, _query, _orderBY) => {
     
     const [error, setError] = useState(null)
     const [documents, setDocuments] = useState(null)
@@ -14,15 +14,21 @@ export const useCollection = (collectioN, _query) => {
     //якщо не використати ref --> буде infinite loop in useEff
     //_query це арр і він є "іншим" арреєм на кожному виклику useEff
     const query = useRef(_query).current
+
+    //щоб транзакціїї додавались поступово упорядковано
+    const orderBY = useRef(_orderBY).current
     
     //як тільки зміниться конкретна коллекція, то тут перезапишуться данні
     useEffect(() => {
-
       let ref =  projectFirestore.collection(collectioN)
       //Перевірка, щоб усі записи конкретного юзера відображались тільки під його логіном
       if(query) {
         ref = ref.where(...query)
       }
+            if(orderBY) {
+                ref = ref.orderBy(...orderBY)
+            }
+
 
       const unsubscribe = ref.onSnapshot( snapshot => {
         
@@ -44,7 +50,7 @@ export const useCollection = (collectioN, _query) => {
       //unsubscribe on unmount
       return () => unsubscribe()
 
-    }, [collectioN, query])
+    }, [collectioN, query, orderBY])
 
     return {documents, error}
 }

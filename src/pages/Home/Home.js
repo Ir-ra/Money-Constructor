@@ -9,8 +9,8 @@ function Home() {
     const {user} = useAuth()
     const {documents, error} = useCollection(
         'transactions',
-        ["uid", "==", user.uid])       //це типу оті query з useColl
-        
+        ["uid", "==", user.uid],       //це типу оті query з useColl
+        ['createdAt', 'desc'])
     
 
     return ( 
