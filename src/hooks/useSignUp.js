@@ -7,7 +7,6 @@ export const useSignUp = () => {
     //for clean up function
     const [isCancelled, setIsCancelled] = useState(false)
 
-    // const [data, setData] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
     const {dispatch} = useAuth()
@@ -19,7 +18,7 @@ export const useSignUp = () => {
         try {
             //sign up user
             const response = await projectAuth.createUserWithEmailAndPassword(email, password)
-            console.log(response.user) // це буде щойно створений юзер
+            console.log(response.user) // brand new user
        
             if(!response){
                 throw new Error('Could not complete signup')

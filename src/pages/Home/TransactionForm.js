@@ -1,21 +1,21 @@
 import { Fragment, useEffect, useState } from "react"
 import { useFirestore } from "../../hooks/useFirestore"
 
-export default function TransactionForm({uid}){
+export default function TransactionForm({ uid }) {
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
-    const {addDocument, response} = useFirestore('transactions')
+    const { addDocument, response } = useFirestore('transactions')
 
     const handleSubmit = (e) => {
         e.preventDefault()
         //save transaction to FB(db)
         addDocument({
             uid: uid,
-            name, 
+            name,
             amount
         })
     }
-//Очищує поля після додавання значень в базу данних. Але тільки якщо це успішна операція
+
     useEffect(() => {
         if (response.success) {
             setName('')
@@ -31,20 +31,20 @@ export default function TransactionForm({uid}){
                 <label>
                     <span>Transaction name:</span>
                     <input
-                    type='text'
-                    required
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
+                        type='text'
+                        required
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
                     />
                 </label>
 
                 <label>
                     <span>Amount ($):</span>
                     <input
-                    type='number'
-                    required
-                    onChange={(e) => setAmount(e.target.value)}
-                    value={amount}
+                        type='number'
+                        required
+                        onChange={(e) => setAmount(e.target.value)}
+                        value={amount}
                     />
                 </label>
                 <button>Add Transaction</button>
