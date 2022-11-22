@@ -19,6 +19,16 @@
   background: #1f9751;
   border-radius: 10px;
   max-width: 260px;
+
+}
+
+@media (max-width:500px) {
+  .sidebar {
+    margin: auto;
+  }
+  .sidebar h3 {
+    text-align: center;
+  }
 }
 
 .sidebar input,
