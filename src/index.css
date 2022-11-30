@@ -9,13 +9,24 @@ body {
   margin: 0;
   font-size: 1.1em;
 }
-body .dark{
-  background: #484848;
-}
 ul, li, p, h1, h2, h3, h4 {
+
   margin: 0;
   padding: 0;
 }
 ul {
   list-style-type: none;
 }
+
+
+/* dark mode */
+body .dark{
+  background: #484848;
+}
+body .dark h2 {
+  color: #ffffff;
+}
+body .dark span {
+  color: #ffffff;
+}
+

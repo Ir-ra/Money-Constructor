@@ -10,8 +10,13 @@
 }
 
 .signup-form span {
+  color: black;
   display: block;
   margin-bottom: 6px;
+}
+
+.signup-form h2 {
+  color: black;
 }
 
 .signup-form input {
