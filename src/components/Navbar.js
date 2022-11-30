@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuth } from '../hooks/useAuth'
 import { Fragment } from 'react'
+import { useTheme } from '../hooks/useTheme'
 
 function Navbar() {
     const { logOut } = useLogout()
     const { user } = useAuth()
+    const { color } = useTheme()
 
     return (
-        <nav className={styles.navbar}>
+        <nav className={styles.navbar} style={{ background: color }}>
             <ul>
                 <li className={styles.title}>myMoney</li>
 

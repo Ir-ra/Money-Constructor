@@ -1,18 +1,23 @@
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import Navbar from './components/Navbar';
+import ThemeSelector from './components/ThemeSelector';
 import { useAuth } from './hooks/useAuth';
+import { useTheme } from './hooks/useTheme';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
+import './App.css'
 
 function App() {
   const { authIsReady, user } = useAuth()
+  const { mode } = useTheme()
 
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       {authIsReady && (
         <BrowserRouter>
           <Navbar />
+          <ThemeSelector />
           <Switch>
 
             <Route exact path='/'>
