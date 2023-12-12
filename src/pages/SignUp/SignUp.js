@@ -1,13 +1,13 @@
-import styles from './SignUp.module.css'
+import styles from './SignUp.module.css';
 import { useState } from 'react';
-import { useSignUp } from '../../hooks/useSignUp'
+import { useSignUp } from '../../hooks/useSignUp';
+
 function SignUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [displayName, setDisplayName] = useState('')
 
-    //Витягаємо те що нам потрібно з useSignUp (це те що там вертаємо)
-    const {error, isPending, signUp} = useSignUp()
+    const { error, isPending, signUp } = useSignUp()
 
     const handleSubmit = (e) => {
         e.preventDefault()
