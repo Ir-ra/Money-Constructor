@@ -24,9 +24,9 @@ export function AuthContextProvider({ children }) {
     })
 
     //comunication with Firebase (when user is loged in)
-    useEffect(() => {
+    useEffect(()=>{
         const unsub = projectAuth.onAuthStateChanged((user) => {
-            dispatch({ type: 'AUTH_IS_READY', payload: user })
+            dispatch({type:'AUTH_IS_READY', payload: user})
             unsub()
         })
     }, [])

@@ -1,7 +1,6 @@
 import styles from './SignUp.module.css';
 import { useState } from 'react';
 import { useSignUp } from '../../hooks/useSignUp';
-
 function SignUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -17,7 +16,6 @@ function SignUp() {
     return (
         <form className={styles['signup-form']} onSubmit={handleSubmit}>
             <h2>Sign Up</h2>
-
 
             <label>
                 <span>email:</span>
@@ -52,5 +50,4 @@ function SignUp() {
         </form>
     );
 }
-
 export default SignUp;

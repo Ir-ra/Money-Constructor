@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import Navbar from './components/Navbar';
 import { useAuth } from './hooks/useAuth';
 import Home from './pages/Home/Home';
@@ -7,7 +7,7 @@ import SignUp from './pages/SignUp/SignUp';
 
 function App() {
   const { authIsReady, user } = useAuth();
-
+ 
   return (
     <div className="App">
       {authIsReady && (

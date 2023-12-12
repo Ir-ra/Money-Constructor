@@ -12,8 +12,6 @@ function Home() {
     ["uid", "==", user.uid],
     ['createdAt', 'desc'])
 
-  const totalAmount = documents && documents.reduce((a, b) => a + parseInt(b.amount), 0);
-
 
   return (
     <div className={styles.container}>
@@ -26,7 +24,8 @@ function Home() {
         {documents && <TransactionList transactions={documents} />}
       </div>
 
-      <p className={styles.total}>Total amount {`$${totalAmount}`}</p>
+
+
     </div>
   );
 }

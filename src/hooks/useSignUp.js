@@ -4,6 +4,7 @@ import { useAuth } from "./useAuth";
 
 export const useSignUp = () => {
     const [isCancelled, setIsCancelled] = useState(false)
+
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
     const { dispatch } = useAuth()
@@ -15,8 +16,8 @@ export const useSignUp = () => {
         try {
             const response = await projectAuth.createUserWithEmailAndPassword(email, password)
             console.log('recently created user:', response.user)
-
-            if (!response) {
+       
+            if(!response){
                 throw new Error('Could not complete signup')
             }
 
