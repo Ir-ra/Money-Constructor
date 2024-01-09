@@ -1,6 +1,9 @@
 ## Money tracker
-Implemented money tracker with authentication, database and storage.
-There is ability to enter what you had spent money on and and how much money.
+Money tracker app where users can log expenditures, specifying the amount and the nature of the expense.
+
+To test the platform, you can use an already-registered user.
+* login: test@mail.com
+* password: test123
 
 ## DEMO
 [DEMO LINK](https://mymoney-m.web.app/)
